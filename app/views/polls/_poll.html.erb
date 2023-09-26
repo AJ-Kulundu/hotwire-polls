@@ -1,2 +1,7 @@
-
-<p><%=poll.name%><p>
+<div class="flex justify-between items-center border-2 rounded-md py-2">
+    <p><%=poll.name%><p>
+    <div class="flex space-x-4">
+        <%= link_to "Edit", edit_poll_path(poll), class:"px-4 py-2 bg-amber-400 rounded-md" %>
+        <%= button_to "Delete",poll_path(poll), method: :delete,class:"px-4 py-2 bg-amber-400 rounded-md" %>
+    </div>
+</div>

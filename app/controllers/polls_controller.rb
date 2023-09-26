@@ -18,11 +18,19 @@ class PollsController < ApplicationController
         if @polls.save
             redirect_to polls_path
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
 
     def edit; end
+
+    def update
+        if @poll.update(poll_params)
+            redirect_to polls_path
+        else
+            render :edit,status: :unprocessable_entity
+        end
+    end
     
     private
     
