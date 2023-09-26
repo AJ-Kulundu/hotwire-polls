@@ -68,6 +68,20 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    anycable (1.4.2)
+      anycable-core (= 1.4.2)
+      google-protobuf (~> 3.23)
+      grpc (~> 1.53)
+    anycable-core (1.4.2)
+      anyway_config (~> 2.2)
+      google-protobuf (>= 3.13)
+    anycable-rails (1.4.0)
+      actioncable (>= 6.0)
+      anycable (~> 1.4)
+      globalid
+    anyway_config (2.5.3)
+      ruby-next-core (>= 0.14.0)
+    bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -87,9 +101,21 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    devise (4.9.2)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (3.24.3-x86_64-linux)
+    googleapis-common-protos-types (1.9.0)
+      google-protobuf (~> 3.18)
+    grpc (1.58.0-x86_64-linux)
+      google-protobuf (~> 3.23)
+      googleapis-common-protos-types (~> 1.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -128,6 +154,7 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
+    orm_adapter (0.5.0)
     pg (1.5.4)
     psych (5.1.0)
       stringio
@@ -173,7 +200,11 @@ GEM
     regexp_parser (2.8.1)
     reline (0.3.8)
       io-console (~> 0.5)
+    responders (3.1.0)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.2.6)
+    ruby-next-core (0.15.3)
     rubyzip (2.3.2)
     selenium-webdriver (4.12.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -199,6 +230,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -216,9 +249,11 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  anycable-rails (~> 1.4)
   bootsnap
   capybara
   debug
+  devise (~> 4.9)
   importmap-rails
   jbuilder
   pg (~> 1.1)
