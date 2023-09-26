@@ -1,0 +1,8 @@
+<%= form_with model:[poll,poll_item] do |form| %>
+    <div>
+        <%=form.text_field :item_name, placeholder:"Poll Item" %>
+    </div>
+    <div>
+        <%= form.submit%>
+    </div>
+<%end%>

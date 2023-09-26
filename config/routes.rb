@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
   resources :home
-  resources :polls
+  resources :polls do
+    resources :poll_items
+  end
 end
