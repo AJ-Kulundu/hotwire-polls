@@ -9,7 +9,8 @@ class PollsController < ApplicationController
     end
     
     def new
-        @polls = @user.polls.build
+        @polls = @user.polls.build(poll_params)
+        @polls.poll_items.build if @polls.poll_items.blank?
     end
     
     def create
@@ -22,7 +23,9 @@ class PollsController < ApplicationController
         end
     end
 
-    def edit; end
+    def edit
+        @polls = @user.polls.build(poll_params)
+    end
 
     def update
         if @poll.update(poll_params)
@@ -35,7 +38,7 @@ class PollsController < ApplicationController
     private
     
     def poll_params
-        params.require(:poll).permit(:name,:description)
+        params.fetch(:poll,{}).permit(:name,:description,poll_items_attributes: [:item_name,:_destroy,:poll_id])
     end
 
     def set_poll
