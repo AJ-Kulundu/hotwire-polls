@@ -1,0 +1,15 @@
+<p class="text-2xl">New Poll</p>
+
+<%=form_with model: @polls, class:"flex flex-col space-y-4" do |f| %>
+    <div>
+        <%= f.label "Poll Name"%>
+        <%= f.text_field :name, placeholder: "Poll Name"%>
+    </div>
+    <div>
+        <%= f.label :desciption%>
+        <%= f.text_area :description, placeholder: "Describe your poll"%>
+    </div>
+    <div>
+        <%= f.submit%>
+    </div>
+<%end%>
