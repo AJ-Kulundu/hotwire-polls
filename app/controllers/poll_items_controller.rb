@@ -6,7 +6,10 @@ class PollItemsController < ApplicationController
 
     def update
         if @poll_item.update(poll_item_params)
-            redirect_to polls_path
+            respond_to do |format|
+                format.html {redirect_to polls_path}
+                format.turbo_stream
+            end
         else
             render :edit,status: :unprocessable_entity
         end

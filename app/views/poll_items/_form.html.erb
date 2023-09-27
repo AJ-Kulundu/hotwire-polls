@@ -1,8 +1,8 @@
-<%= form_with model:[poll,poll_item] do |form| %>
+<%= form_with model:[poll,poll_item], class:"flex w-full justify-between items-center" do |form| %>
     <div>
         <%=form.text_field :item_name, placeholder:"Poll Item" %>
     </div>
-    <div>
+    <div class="px-4 py-2 bg-amber-400 rounded-md">
         <%= form.submit%>
     </div>
 <%end%>

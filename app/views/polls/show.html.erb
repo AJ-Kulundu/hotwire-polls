@@ -1,7 +1,5 @@
 <p class="text-3xl font-bold"><%= @poll.name%></p>
 <p class="text-lg font-semibold"><%= @poll.description%></p>
 
-<%@poll.poll_items.each do |item |%>
-    <p><%=item.item_name%></p>
-<%end%>
+<%= render @poll.poll_items,poll: @poll %>
 
