@@ -1,3 +1,4 @@
-<%= turbo_frame_tag poll_item do%>
+<%= turbo_frame_tag poll_item, class:"flex justify-between w-full" do%>
     <%= link_to poll_item.item_name, edit_poll_poll_item_path(poll,poll_item) %>
+    <%= button_to "Delete", poll_poll_item_path(poll,poll_item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class:"px-4 py-2 bg-red-400 rounded-md" %>
 <%end%>

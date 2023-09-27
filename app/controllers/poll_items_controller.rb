@@ -17,7 +17,10 @@ class PollItemsController < ApplicationController
 
     def destroy
         @poll_item.destroy
-        redirect_to polls_path
+        respond_to do |format|
+            format.html {redirect_to polls_path}
+            format.turbo_stream
+        end
     end
 
     private
