@@ -10,7 +10,7 @@ class PollsController < ApplicationController
     
     def new
         @polls = @user.polls.build(poll_params)
-        @polls.poll_items.build if @polls.poll_items.blank?
+        @polls.poll_items.build 
     end
     
     def create

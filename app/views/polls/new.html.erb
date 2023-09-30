@@ -1,6 +1,6 @@
 <p class="text-2xl">New Poll</p>
 
-<%=form_with model: @poll, class:"flex flex-col space-y-4" do |f| %>
+<%=form_with model: @polls, class:"flex flex-col space-y-4" do |f| %>
     <div>
         <%= f.label "Poll Name"%>
         <%= f.text_field :name, placeholder: "Poll Name"%>
@@ -9,23 +9,26 @@
         <%= f.label :desciption%>
         <%= f.text_area :description, placeholder: "Describe your poll"%>
     </div>
-    <div>
-        <p class ="text-lg">Poll Items</p>
+    <hr class="border-2 border-black"/>
+    <div class="flex flex-col space-y-4 lg:space-y-6 justify-start">
+        <p class ="text-lg font-semibold">Poll Items</p>
         <% f.object.poll_items.each_with_index do |poll_item, id| %>
             <%= f.fields :poll_items_attributes, model: poll_item, index: id do |sub_form| %>
                 <fieldset class="flex justify-between">
                 <%= sub_form.text_field :item_name, placeholder: "Add Poll Item"%>
-                <%= sub_form.button :_destroy, value: true, formaction: new_poll_path, formmethod:"get" do %>
+                <%= sub_form.button :_destroy, value: true, formaction: new_poll_path, formmethod:"get",class:"py-2 px-4 bg-red-400 rounded-md" do %>
                     Remove
                 <%end%>
                 </fieldset>
             <%end%>
         <%end%>
-        <%= f.fields :poll_items_attributes, index: f.object.poll_items.size do |sub_form|%>
-            <%= sub_form.button :_destroy, value: false, formaction: new_poll_path, formmethod:"get" do%>
-                Add Poll Items
+        <div class="flex justify-start">
+            <%= f.fields :poll_items_attributes, index: f.object.poll_items.size do |sub_form|%>
+                    <%= sub_form.button :_destroy, value: false, formaction: new_poll_path, formmethod:"get", class:"text-center py-2 px-4 bg-green-400 rounded-md " do%>
+                        Add Item
+                    <%end%>
             <%end%>
-        <%end%>
+        </div>
     </div>
     <div class="">
         <%= f.submit%>
