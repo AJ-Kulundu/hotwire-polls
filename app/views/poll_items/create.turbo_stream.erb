@@ -1,0 +1,4 @@
+<%= turbo_stream.update PollItem.new, ""%>
+<%= turbo_stream.append nested_dom_id(@poll,"poll_items") do %>
+    <%= render @poll_item, poll:@poll, poll_item: @poll_item %>
+<%end%>

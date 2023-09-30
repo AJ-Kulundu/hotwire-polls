@@ -1,0 +1,4 @@
+<p class="text-lg">Add Poll Item</p>
+<%= turbo_frame_tag @poll_item do%>
+    <%= render "form", poll: @poll, poll_item: @poll_item %>
+<%end%>

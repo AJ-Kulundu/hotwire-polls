@@ -1,5 +1,15 @@
 <p class="text-3xl font-bold"><%= @poll.name%></p>
 <p class="text-lg font-semibold"><%= @poll.description%></p>
 
-<%= render @poll.poll_items,poll: @poll %>
+<%= turbo_frame_tag nested_dom_id(@poll,"poll_items"),class: "flex flex-col space-y-4" do%>
+    <%= render @poll.poll_items,poll: @poll %>
+<%end%>
 
+
+<%= turbo_frame_tag PollItem.new %>
+
+<%= turbo_frame_tag "new_item"  do%>
+    <div class="flex flex-row justify-center">
+        <%= link_to "Add Item", new_poll_poll_item_path(@poll),data: {turbo_frame: dom_id(PollItem.new)},class: "py-2 px-4 bg-green-400 rounded-md" %>
+    </div>
+<%end%>

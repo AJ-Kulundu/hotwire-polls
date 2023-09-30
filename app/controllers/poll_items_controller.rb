@@ -1,6 +1,22 @@
 class PollItemsController < ApplicationController
-    before_action :set_poll, only: [:edit, :update, :destroy]
+    before_action :set_poll, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_poll_item, only: [:edit, :update, :destroy]
+
+    def new
+        @poll_item = @poll.poll_items.build
+    end
+
+    def create
+        @poll_item = @poll.poll_items.build(poll_item_params)
+        if @poll_item.save
+            respond_to do |format|
+                format.html {redirect_to poll_path(@poll)}
+                format.turbo_stream
+            end
+        else
+            render :new,status: :unprocessable_entity
+        end
+    end
 
     def edit;end
 
