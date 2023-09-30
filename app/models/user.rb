@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   #Associations
   has_many :polls, dependent: :destroy
+  has_many :poll_votes, dependent: :destroy
+  has_many :poll_items, through: :poll_votes
 
   #Validations
   
