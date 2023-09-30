@@ -1,0 +1,19 @@
+<nav class="sticky flex flex-row justify-between items-center p-5 shadow-sm">
+ <h1 class=" text-2xl font-bold">Polls App</h1>
+ <div class="flex items-center space-x-4 lg:space-x-6">
+      <%=link_to "Home", root_path, class: "hover:underline hover:font-semibold"%>
+      <%if user_signed_in?%>
+         <%=link_to "My Polls", polls_path, class: "hover:underline hover:font-semibold"%>
+         <%=link_to "Create Poll", new_poll_path, class: "hover:underline hover:font-semibold"%>
+      <%else%>
+         <%=link_to "Polls", polls_path, class: "hover:underline hover:font-semibold"%>
+      <%end%>
+ </div>
+ <div>
+   <%if user_signed_in?%>
+      <%=button_to "Logout", destroy_user_session_path, method: :delete,data:{turbo_confirm:"Are you sure you want to logout?"}%>
+   <%else%>
+      <%=link_to "Login", new_user_registration_path%>
+   <%end%>
+ </div>
+</nav>
