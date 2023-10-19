@@ -5,21 +5,20 @@ class PollVotesController < ApplicationController
     before_action :set_poll_item
 
     def create
-        @poll_vote = @poll_item.poll_votes.build(poll_vote_params)
+        @poll_vote = @poll_item.poll_votes.build(user: @user)
 
         if @poll_vote.save
-            redirect_to poll_path(@poll), notice: "Your vote was successfully recorded."
+            respond_to do |format|
+                format.html {redirect_to poll_path(@poll), flash: "Your vote was successfully recorded."}
+                format.turbo_stream
+            end
         else
-            redirect_to poll_path(@poll), alert: "Your vote was not recorded."
+            redirect_to poll_path(@poll), flash: "Your vote was not recorded."
         end
     end
 
 
     private
-
-    def poll_vote_params
-        params.require(:poll_vote).permit(:vote).merge(user_id: @user.id)
-    end
 
     def set_user
         @user = current_user

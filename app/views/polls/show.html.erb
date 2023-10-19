@@ -2,7 +2,7 @@
 <p class="text-lg font-semibold"><%= @poll.description%></p>
 
 <%= turbo_frame_tag nested_dom_id(@poll,"poll_items"),class: "flex flex-col space-y-4" do%>
-    <%= render @poll.poll_items,poll: @poll %>
+    <%= render @poll_items ,poll: @poll %>
 <%end%>
 
 

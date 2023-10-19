@@ -6,6 +6,8 @@ class PollsController < ApplicationController
     end
     
     def show
+        @poll_items = @poll.poll_items.includes(:poll_votes)
+        console
     end
     
     def new

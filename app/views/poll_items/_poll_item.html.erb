@@ -1,10 +1,17 @@
 <%if poll.user_id == current_user.id %>
-    <%= turbo_frame_tag poll_item, class:"flex justify-between w-full" do%>
-        <div class="flex items-center space-x-4 lg:space-x-6">
-        <%= button_to sanitize("&uarr;"),poll_poll_item_poll_votes_path(poll,poll_item), method: :post, data:{turbo_frame:"_top"}%>
-        <%= link_to poll_item.item_name, edit_poll_poll_item_path(poll,poll_item) %>
+    <%= turbo_frame_tag poll_item, class:"flex flex-col space-y-2" do%>
+        <div class="flex justify-between w-full">
+            <div class="flex items-center space-x-4 lg:space-x-6">
+            <%= button_to sanitize("&uarr;"),poll_poll_item_poll_votes_path(poll,poll_item), method: :post, data:{turbo_frame:"_top"}, class: "hover:text-green-400 hover:font-bold"%>
+            <%= link_to poll_item.item_name, edit_poll_poll_item_path(poll,poll_item) %>
+            </div>
+            <%= button_to "Delete", poll_poll_item_path(poll,poll_item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class:"px-4 py-2 bg-red-400 rounded-md" %>
         </div>
-        <%= button_to "Delete", poll_poll_item_path(poll,poll_item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class:"px-4 py-2 bg-red-400 rounded-md" %>
+        <div>
+        <%= turbo_frame_tag nested_dom_id(poll_item,"poll_votes") do%>
+            <%=poll_item.poll_votes.size%>
+        <%end%>
+        </div>
     <%end%>
 <%else%>
     <p><%=poll_item.item_name%></p>
